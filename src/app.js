@@ -2,13 +2,17 @@ import bcrypt from "bcrypt";
 import cors from "cors";
 import express from "express";
 import jwt from "jsonwebtoken";
+
 import connection from "./database.js";
+import handleError from "./middlewares/handleErrorMiddleware.js";
+import userRouter from "./routers/userRouter.js";
 
 const app = express();
 app.use(cors());
 app.use(express.json());
 
-app.use()
+app.use(userRouter);
+app.use(handleError);
 
 app.post("/sign-in", async (req, res) => {
   try {
